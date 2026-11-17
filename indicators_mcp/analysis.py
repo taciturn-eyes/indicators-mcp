@@ -81,6 +81,7 @@ def build_radar_row(symbol: str, interval: str) -> List[str]:
 
     return [
         symbol,
+        interval,
         str(round(last["close"], decimals)),
         describe_ema_trend(last),
         summarize_macd_divergence(df),

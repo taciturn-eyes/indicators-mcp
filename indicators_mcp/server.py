@@ -3,7 +3,7 @@ from typing import List
 from mcp.server.fastmcp import FastMCP
 
 from .analysis import analyze_single_timeframe
-from .config import DEFAULT_SCAN_SYMBOLS
+from .config import DEFAULT_SCAN_INTERVALS, DEFAULT_SCAN_SYMBOLS
 from .radar import scan_binance_futures as scan_radar
 
 
@@ -12,14 +12,15 @@ mcp = FastMCP("Binance-BanShen-Wyckoff-Analyzer")
 
 @mcp.tool()
 def scan_binance_futures(
-    symbols: str = ",".join(DEFAULT_SCAN_SYMBOLS), interval: str = "1h"
+    symbols: str = ",".join(DEFAULT_SCAN_SYMBOLS),
+    intervals: List[str] = list(DEFAULT_SCAN_INTERVALS),
 ) -> str:
     """并发扫描多个币安永续合约，输出精简雷达摘要。
 
     symbols 接受逗号或空格分隔的简称/合约代码，例如 "BTC, ETH, XAU, CL, TQQQ, SOXL"。
-    interval 为单个周期，例如 "1h"、"4h" 或 "1d"。
+    intervals 为周期列表，例如 ["1d", "4h"]；默认扫描日线和4小时线。
     """
-    return scan_radar(symbols, interval)
+    return scan_radar(symbols, intervals)
 
 
 @mcp.tool()

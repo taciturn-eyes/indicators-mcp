@@ -13,7 +13,7 @@ uv run main.py
 
 ## MCP 工具
 
-- `scan_binance_futures`：默认并发扫描 BTC、ETH、XAU、CL、TQQQ、SOXL 的 1h 雷达摘要。可传入逗号分隔的简称/合约代码及单一周期。
+- `scan_binance_futures`：默认并发扫描 BTC、ETH、XAU、CL、TQQQ、SOXL 的 1d 和 4h 雷达摘要。可传入逗号分隔的简称/合约代码及周期列表，例如 `intervals=["1d", "4h", "1h"]`。
 - `analyze_binance_futures`：对单个品种按一个或多个周期生成 K 线与指标明细。
 
 ## 模块
